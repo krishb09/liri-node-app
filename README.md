@@ -15,3 +15,16 @@ Technologies Used:
     movie function to get movie info and a do-what-it-says function that reads a file, "random.txt" that has one of the previous
     functions named above in it as the command and the respective search term. 
     - The last function also logs each of the commands entered to a separate text file, "log.txt" 
+
+![Image of Concert]
+https://github.com/krishb09/liri-node-app/blob/master/Images/concert.png
+
+![Image of Spotify]
+https://github.com/krishb09/liri-node-app/blob/master/Images/spotify.png
+
+![Image of Movie]
+https://github.com/krishb09/liri-node-app/blob/master/Images/movie.png
+
+![Do what it says]
+https://github.com/krishb09/liri-node-app/blob/master/Images/do-what-it-says.png
+
