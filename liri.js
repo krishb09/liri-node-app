@@ -16,7 +16,7 @@ var spotify= new Spotify(keys.spotify);
 // do-what-it-says
 
 var commandLine = process.argv[2];
-var userInput = process.argv[3] || "The Sign Ace of Base";
+var userInput = process.argv.slice(3).join(" ");
 
 //use switch statements to see which command user enters
 switch(commandLine){
@@ -26,7 +26,7 @@ case "concert-this":
     break; 
 
 case "spotify-this-song":
-    spotify_this_(userInput); 
+    spotify_this(userInput); 
     break; 
 
 case "movie-this":
@@ -81,15 +81,13 @@ function concert_this(userInput){ //use axios package
     });
 }
 
-function spotify_this_(userInput){
-// var spotify = new Spotify({
-//   id: <your spotify client id>,
-//   secret: <your spotify client secret>
-// });
+function spotify_this(userInput){
 
+// console.log(userInput); 
 if(!userInput ){
-    userInput = "The Sign Ace of Base"; 
-}else{
+    userInput = "The Sign Ace of Base"
+
+}
   spotify
   .search({ type: 'track', query: userInput, limit: 1})
   .then(function(response) {
@@ -109,20 +107,19 @@ if(!userInput ){
     console.log(err);
   });
 }
-}
 
 function movie_this(userInput){ //OMDB api 
-    var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
-    
+
     if(!userInput){
-        userInput = "Mr.Nobody";  
-    }else{
+        userInput = "Mr. Nobody";  
+    }
+    var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&y=&plot=short&apikey=trilogy";
 
     axios.get(queryUrl)
     .then(function(response) {
     // If the axios was successful...
     // Then log the body from the site!
-    // console.log(response.data); 
+    // console.log("REPONSE", response.data); 
     console.log("------------------------------");
     console.log("Movie Title: " + response.data.Title); 
     console.log("Year Released: " + response.data.Year); 
@@ -154,42 +151,35 @@ function movie_this(userInput){ //OMDB api
       }
       console.log(error.config);
 });
-}
+
 }
 function do_what_it_says(){
     fs.readFile("random.txt", "utf8", function(error, data) { //callback function 
-
         // If the code experiences any errors it will log the error to the console.
         if (error) {
           return console.log(error);
         }
         // We will then print the contents of data
         var content = data.split(","); 
-        console.log(content); 
         var command = content[0]; 
-        console.log(command);
         var item = content[1]; 
-        // spotify_this_(item); 
+
         if(command === "spotify-this-song"){
-            spotify_this_(item); 
+            spotify_this(item); 
         }else if(command === "concert-this"){
             concert_this(item);
         }else if(command === "movie-this"){
             movie_this(item); 
         }
+
+        fs.appendFile("log.txt", command + "\n", function(err) { //add every command  
+          // If the code experiences any errors it will log the error to the console.
+          if (err) {
+            return console.log(err);
+          }
+          // Otherwise, it will print: "movies.txt was updated!"
+          console.log("log.txt was updated!");
+        });
       });
-
-    //   fs.appendFile("log.txt", "item" , function(err) { //add every command
-
-    //     // If the code experiences any errors it will log the error to the console.
-    //     if (err) {
-    //       return console.log(err);
-    //     }
-    //     // Otherwise, it will print: "movies.txt was updated!"
-    //     console.log("log.txt was updated!");
-    //   });
     //   spotify-this-song,"I Want it That Way", movie-this, "Mean Girls", concert-this, "Broods"
-
-    //2 Q's: mr nobody is showing up as undefined and the concert-this in do-what-it-says doesnt work
-    
 }
