@@ -16,15 +16,21 @@ Technologies Used:
     functions named above in it as the command and the respective search term. 
     - The last function also logs each of the commands entered to a separate text file, "log.txt" 
 
-![Image of Concert]
+[Image of Concert]
 https://github.com/krishb09/liri-node-app/blob/master/Images/concert.png
 
-![Image of Spotify]
+[Image of Spotify]
 https://github.com/krishb09/liri-node-app/blob/master/Images/spotify.png
 
-![Image of Movie]
+[Image of Movie]
 https://github.com/krishb09/liri-node-app/blob/master/Images/movie.png
 
-![Do what it says]
+[Image of Movie when no arguement given]
+https://github.com/krishb09/liri-node-app/blob/master/Images/movie-mrNobody.png
+
+[Image of Concert when no argument given]
+https://github.com/krishb09/liri-node-app/blob/master/Images/theSign.png
+
+[Do what it says]
 https://github.com/krishb09/liri-node-app/blob/master/Images/do-what-it-says.png
 
